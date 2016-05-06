@@ -1,3 +1,3 @@
 def setup_routes(config):
     config.add_route('matches', '/matches/')
-    print("hi")
+    config.add_route('matches2', '/matches2/')
