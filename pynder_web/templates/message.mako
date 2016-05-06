@@ -5,11 +5,11 @@ from pynder_core.tinder import humanized_delta
 %>
 
 <table class='messages' id="${match.id}">
-    <th>
-        <td>Name</td>
-        <td>Time</td>
-        <td>Message<td>
-    </th>
+    <tr>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Message</th>
+    </tr>
     % for message in messages:
         <tr>
             <td>${str(message.sender.name)}</td>
