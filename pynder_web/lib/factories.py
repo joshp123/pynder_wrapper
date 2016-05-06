@@ -19,5 +19,5 @@ class MatchFactory(BaseFactory):
             # TODO: display match view
         print(key)
         print([match.id for match in session.matches])
-        if key in [match.id for match in session.matches]:
-            return match
+        matches = {match.id: match for match in session.matches}
+        return matches.get(key)
