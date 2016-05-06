@@ -16,7 +16,9 @@ def main(config, **settings):
     global session
     session = Tinder()
 
-    config = Configurator()
+    from pynder_web.lib.factories import RootFactory
+
+    config = Configurator(root_factory=RootFactory)
     setup_routes(config)
     config.include('pyramid_mako')
     config.add_route('hello', '/hello/{name}')
