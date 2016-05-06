@@ -6,6 +6,7 @@ import pytz
 from prettytable import PrettyTable
 
 from iterm_image import display_image
+from login import get_token
 
 pynder_config = {}
 session = None
@@ -36,21 +37,25 @@ class Tinder(object):
             print("Before: {} messages, Now: {} matches.".format(
                 original_messages, self.total_messages))
 
-
     @property
     def total_messages(self):
         return sum([len(self.messages[sender]) for sender in self.messages])
 
     def print_messages(self):
         self.refresh()
-        recent = sorted([m for m in self.matches if m.messages], key=lambda match: match.messages[-1].sent)
+        recent = sorted([m for m in self.matches if m.messages],
+                        key=lambda match: match.messages[-1].sent)
         for match in recent:
             print_messages_for_match(match)
 
 
 def get_session():
-    session = pynder.Session(pynder_config['id'],
-                             pynder_config['access_token'])
+    access_token = pynder_config['access_token']
+    try:
+        access_token = get_token()
+    except:
+        pass
+    session = pynder.Session(pynder_config['id'], access_token)
     return session
 
 
@@ -74,7 +79,6 @@ def print_matches(match_list):
 
 
 def repr_matches(match_list):
-    
     pass
     # table_of_images([m.photos])
 
