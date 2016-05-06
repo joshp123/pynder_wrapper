@@ -5,7 +5,7 @@ import pynder
 import pytz
 from prettytable import PrettyTable
 
-from iterm_image import display_image
+from pynder_cli.iterm_image import display_image
 from login import get_token
 
 pynder_config = {}
