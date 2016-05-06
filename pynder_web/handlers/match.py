@@ -6,3 +6,9 @@ from pynder_web import session
 def matches(request):
     print("adsfads")
     return {'matches': [m.user.name for m in session.matches]}
+
+
+@view_config(route_name='matches2',
+             renderer='pynder_web:templates/matches.mako')
+def matches_template(request):
+    return {'matches': session.matches}
