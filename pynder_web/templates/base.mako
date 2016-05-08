@@ -8,8 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <style>
+        body { padding-top: 70px; }
     </style>
   </head>
+  <%include file="pynder_web:/templates/nav.mako" />
   <body>
     <!-- TODO: move navbar to separate file, CSS to separate file -->
     <%include file="pynder_web:/templates/nav.mako" />
