@@ -1,3 +1,6 @@
+<%inherit file="pynder_web:templates/base.mako" />
+
+
 <!-- TODO: add match as a template and import the match here at the top of the page -->
 
 <%

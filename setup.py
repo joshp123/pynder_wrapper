@@ -7,7 +7,8 @@ requires = [
     'prettytable',
     'pytz',
     'requests',
-    'waitress'
+    'waitress',
+    'sqlalchemy'
 ]
 
 setup(name='pynder_web',
