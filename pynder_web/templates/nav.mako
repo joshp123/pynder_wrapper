@@ -7,7 +7,7 @@
       <a class="nav-link" href="#">Matches</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Messages</a>
+      <a class="nav-link" href="/messages/">Messages</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Likes</a>

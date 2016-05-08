@@ -8,19 +8,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <style>
-        .thumbnail{
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 4px;
-            transition: border .2s ease-in-out; // doesn't work
-        }
-        .match {
-/*
-            border: 2px solid #eee;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            */
-        }
     </style>
   </head>
   <body>
