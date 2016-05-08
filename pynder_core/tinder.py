@@ -65,7 +65,7 @@ def repr_match(match):
 
 
 def parse_config():
-    config_path = 'tinder.ini'
+    config_path = '../tinder.ini'
     config = ConfigParser.ConfigParser()
     config.read(config_path)
     global pynder_config
