@@ -1,3 +1,5 @@
+import logging
+
 from pyramid.config import Configurator
 from pyramid.response import Response
 
@@ -6,6 +8,9 @@ from pynder_core.tinder import Tinder
 from pynder_web.routes import setup_routes
 
 session = None
+
+
+log = logging.getLogger(__name__)
 
 
 def hello_world(request):
