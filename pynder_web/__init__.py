@@ -18,7 +18,8 @@ def main(config, **settings):
 
     from pynder_web.lib.factories import RootFactory
 
-    config = Configurator(root_factory=RootFactory)
+    config = Configurator(root_factory=RootFactory,
+                          settings=settings)
     setup_routes(config)
     config.include('pyramid_mako')
     config.add_route('hello', '/hello/{name}')
