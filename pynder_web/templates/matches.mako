@@ -1,4 +1,8 @@
-<h1>Matches</h1>
+<%inherit file="pynder_web:templates/base.mako" />
+
+<div class="page-header">
+    <h1>Matches</h1>
+</div>
 
 % for match in matches:
     <div id=${match.id} class="match">
@@ -8,9 +12,13 @@
             </a>
         </h3>
         <p>${match.user.bio}</p>
-        <div class="images">
+        <div class="row images">
             % for image in match.user.photos:
-                <img class="user" width=100" src=${str(image)}>
+                <div class="col-xs-6 col-md-3">
+                    <div class="thumbanil">
+                        <img class="thumbnail user" width=180 src=${str(image)}>
+                    </div>
+                </div>
             % endfor
         </div>
     </div>
