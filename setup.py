@@ -8,7 +8,8 @@ requires = [
     'pytz',
     'requests',
     'waitress',
-    'sqlalchemy'
+    'sqlalchemy',
+    'dateutil'
 ]
 
 setup(name='pynder_web',

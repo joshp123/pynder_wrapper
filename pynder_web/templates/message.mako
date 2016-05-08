@@ -32,10 +32,10 @@ from pynder_web import session
         <label class="col-xs-1" for="replyToMessage">Reply:</label>
     </div>
     <div class="form-group row">
-        <div class="col-xs-10">
-            <textarea class="form-control col-xs-9" id="reply" form="messagebox" placeholder="..."></textarea>
+        <div class="col-sm-10">
+            <textarea class="form-control col-xs-9" name="message" id="reply" form="messagebox" placeholder="..."></textarea>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <button type="submit" class="btn btn-primary">Send</button>
         </div>
     </div>
@@ -46,13 +46,16 @@ from pynder_web import session
     $(function() {
         $('#messagebox').submit(function() {
             message = $('#reply').val();
-            console.log(message);
             $.ajax({
                 type: 'POST',
                 url: '../message/',
                 data: JSON.stringify({'message': message}),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                success: function() {
+                    window.location.reload();
+                    // TODO: maybe refresh the session? 
+                }
             });
             return false;
         });
