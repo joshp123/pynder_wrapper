@@ -17,7 +17,5 @@ class MatchFactory(BaseFactory):
         if not key:
             pass
             # TODO: display match view
-        print(key)
-        print([match.id for match in session.matches])
         matches = {match.id: match for match in session.matches}
         return matches.get(key)
