@@ -15,17 +15,18 @@
             transition: border .2s ease-in-out; // doesn't work
         }
         .match {
-            border: 2px solid;
+/*
+            border: 2px solid #eee;
             border-radius: 4px;
-            padding: 4px;
             margin-bottom: 20px;
+            */
         }
     </style>
   </head>
   <body>
     <!-- TODO: move navbar to separate file, CSS to separate file -->
     <%include file="pynder_web:/templates/nav.mako" />
-        <div class="container">
+        <div class="container-fluid">
         ${self.body()}
         </div> <!-- End Container -->
         <!-- jQuery first, then Bootstrap JS. -->
