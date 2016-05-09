@@ -1,5 +1,6 @@
 import logging
 from functools import partial
+from time import sleep
 
 from pyramid.view import view_config
 from pynder_web import session
@@ -37,5 +38,10 @@ def message_match(request):
     message = request.json_body.get('message')
     log.critical("Sending message {} to {}".format(message,
                                                    request.context.user.name))
+    sleep(20)
+    response = request.context.message(message)
+    log.critical(type(response))
+    log.critical(response)
+    session.refresh()
     return {'id': 'this is faked',
             'message': message}

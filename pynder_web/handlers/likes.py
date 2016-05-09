@@ -15,7 +15,7 @@ def display_hopeful_like(request):
 
 # TODO: fix factories
 
-@view_config(context="pynder.models.user.User", name="like",
+@view_config(context="pynder.models.user.Hopeful", name="like",
              renderer='json', request_method="POST")
 def like(request):
     id = request.context.like()
@@ -23,7 +23,7 @@ def like(request):
     return {'liked': id}
 
 
-@view_config(context="pynder.models.user.User", name="superlike",
+@view_config(context="pynder.models.user.Hopeful", name="superlike",
              renderer='json', request_method="POST")
 def superlike(request):
     id = request.context.superlike()
@@ -32,10 +32,10 @@ def superlike(request):
     return {'superliked': id}
 
 
-@view_config(context="pynder.models.user.User", name="nope",
+@view_config(context="pynder.models.user.Hopeful", name="nope",
              renderer='json', request_method="POST")
 def nope(request):
-    request.context.dislike()
+    id = request.context.dislike()
     _update_user_after_swipe(request, "nope")
     return {'disliked': id}
 

@@ -33,7 +33,7 @@ class User(Base):
         # super(User, self).__init__(data=user_obj._data, session=None)
 
     def to_hopeful_api_user(self, session):
-        return Hopeful(json.loads(self.data), session=session)
+        return Hopeful(json.loads(self.data), session=session.session)
 
     def to_api_user(self, session):
-        return APIUser(json.loads(self.data), session=session)
+        return APIUser(json.loads(self.data), session=session.session)
