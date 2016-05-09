@@ -8,7 +8,7 @@
 
 <button type="button" class="btn btn-success" onclick=choose("like")>Like</button>
 <button type="button" class="btn btn-info" onclick=choose("superlike")>Superlike</button>
-<button type="button" class="btn btn-warning" onclick=choose("nope")>Nope</button>
+<button type="button" class="btn btn-danger" onclick=choose("nope")>Nope</button>
 
 
 

@@ -38,7 +38,7 @@ class UserFactory(BaseFactory):
         user = db_session.query(User).get(key)
         if user:
             log.critical("user retrieved!")
-            return user.to_api_user(session)
+            return user.to_hopeful_api_user(session)
         available_to_like = db_session.query(User).filter(User.liked == "not yet").all()
         log.critical(len(available_to_like))
         if len(available_to_like) == 0:
@@ -52,4 +52,4 @@ class UserFactory(BaseFactory):
             return nearby[0]
 
         else:
-            return available_to_like[0].to_api_user(session)
+            return available_to_like[0].to_hopeful_api_user(session)
