@@ -2,24 +2,43 @@ import logging
 
 from pyramid.config import Configurator
 from pyramid.response import Response
+from sqlalchemy import engine_from_config
+from sqlalchemy.orm import sessionmaker
 
 from pynder_core.tinder import Tinder
-
 from pynder_web.routes import setup_routes
 
 session = None
+db_session = None
 
 
 log = logging.getLogger(__name__)
 
 
 def hello_world(request):
+    from pynder_core.models.users import User
+    for m in session.matches:
+        u = User(user_obj=m.user)
+        db_session.add(u)
+    db_session.commit()
     return Response('Hello %(name)s!' % request.matchdict)
 
 
 def main(config, **settings):
     global session
     session = Tinder()
+
+    # Late imports requiring the session singleton
+    # from pynder_web.lib.factories import RootFactory
+
+    engine = engine_from_config(settings, 'sqlalchemy.')
+    from pynder_core.models.users import Base
+    Base.metadata.create_all(engine)
+
+    PSQL_Session = sessionmaker(bind=engine)
+
+    global db_session  # yolo
+    db_session = PSQL_Session()
 
     from pynder_web.lib.factories import RootFactory
 

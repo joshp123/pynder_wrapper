@@ -26,11 +26,9 @@ def messages_for_match(request):
 
 
 @view_config(context="pynder.models.user.Match", name='full',
-             renderer="pynder_web:templates/hopeful.mako")
+             renderer="pynder_web:templates/expanded_user.mako")
 def user(request):
-    messages = request.context.messages
-    return {'user': request.context.user,
-            'messages': messages}
+    return {'user': request.context.user}
 
 
 @view_config(context="pynder.models.user.Match", name='message',
@@ -39,5 +37,5 @@ def message_match(request):
     message = request.json_body.get('message')
     log.critical("Sending message {} to {}".format(message,
                                                    request.context.user.name))
-    return {'id': 'sadf',
+    return {'id': 'this is faked',
             'message': message}

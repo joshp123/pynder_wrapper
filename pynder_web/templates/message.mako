@@ -8,6 +8,13 @@ from pynder_core.tinder import humanized_delta
 from pynder_web import session
 %>
 
+<div class="page-header">
+    <h3>
+        <a href="../full/">
+        ${match.user.name}
+        </a>
+    </h3>
+
 <table class='table table-sm table-hover messages' id="${match.id}">
     <tr>
         <th>Name</th>

@@ -5,6 +5,7 @@
 - fix linebreaks in bios
 - finalise and test messaging
     - session refresh required?
+    - poll every 30s, sound alerts?
 
 ### Nice to have
 - better login interface (callbacks from FB to get token)
