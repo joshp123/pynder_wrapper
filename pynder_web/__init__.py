@@ -11,6 +11,7 @@ from pynder_web.routes import setup_routes
 session = None
 db_session = None
 
+private_mode = True
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +37,10 @@ def main(config, **settings):
     Base.metadata.create_all(engine)
 
     PSQL_Session = sessionmaker(bind=engine)
+
+    global private_mode
+    private_mode = settings.get("private_mode", True)
+    log.critical("Private mode on? {}".format(private_mode))
 
     global db_session  # yolo
     db_session = PSQL_Session()
