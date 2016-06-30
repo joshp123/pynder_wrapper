@@ -8,7 +8,7 @@ from pynder_web import db_session
 log = logging.getLogger(__name__)
 
 @view_config(context="pynder.models.user.User",
-             renderer='pynder_web:templates/hopeful.mako')
+             renderer='pynder_web:templates/hopeful.mako', permission="view")
 def display_hopeful_like(request):
     return {'user': request.context}
 
@@ -19,6 +19,7 @@ def display_hopeful_like(request):
              renderer='json', request_method="POST")
 def like(request):
     id = request.context.like()
+    log.critical(id)
     _update_user_after_swipe(request, "yes")
     return {'liked': id}
 
@@ -36,6 +37,7 @@ def superlike(request):
              renderer='json', request_method="POST")
 def nope(request):
     id = request.context.dislike()
+    log.critical(id)
     _update_user_after_swipe(request, "nope")
     return {'disliked': id}
 

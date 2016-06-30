@@ -1,7 +1,10 @@
 import logging
 
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
 from pyramid.response import Response
+
 from sqlalchemy import engine_from_config
 from sqlalchemy.orm import sessionmaker
 
@@ -11,18 +14,22 @@ from pynder_web.routes import setup_routes
 session = None
 db_session = None
 
-private_mode = True
+private_mode = False
 
 log = logging.getLogger(__name__)
 
 
 def hello_world(request):
-    from pynder_core.models.users import User
-    for m in session.matches:
-        u = User(user_obj=m.user)
-        db_session.add(u)
-    db_session.commit()
     return Response('Hello %(name)s!' % request.matchdict)
+
+
+def user_profilefinder(login_username, request):
+    from pynder_core.models.users import LoginUser
+    login_user = db_session.query(LoginUser)\
+        .filter(LoginUser.username == login_username).one()
+    if login_user and login_user.profile:
+        log.critical(login_user.profile)
+        return [login_user.profile]
 
 
 def main(config, **settings):
@@ -50,8 +57,13 @@ def main(config, **settings):
     config = Configurator(root_factory=RootFactory,
                           settings=settings)
     setup_routes(config)
+    config.set_authentication_policy(
+        AuthTktAuthenticationPolicy(secret="fuckthepolice",
+                                    callback=user_profilefinder))
+    config.set_authorization_policy(ACLAuthorizationPolicy())
     config.include('pyramid_mako')
     config.add_route('hello', '/hello/{name}')
+    config.add_route('login', '/login/')
     config.add_view(hello_world, route_name='hello')
     config.scan("pynder_web.handlers")
     app = config.make_wsgi_app()
