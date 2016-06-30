@@ -2,6 +2,7 @@ import logging
 import json
 
 from pynder.models.user import User as APIUser
+from pyramid.security import Allow, ALL_PERMISSIONS
 
 from pynder_web import session
 from pynder_core.models.users import User
@@ -13,6 +14,8 @@ log = logging.getLogger(__name__)
 
 
 class BaseFactory(dict):
+    __acl__ = [(Allow, "admin", ALL_PERMISSIONS)]
+
     def __init__(self, parent, name):
         self.__parent__ = parent
         self.__name__ = name
@@ -25,9 +28,13 @@ class RootFactory(dict):
 
 
 class MatchFactory(BaseFactory):
+    def __acl__(self):
+        log.critical("hi")
+        return [(Allow, "admin", ALL_PERMISSIONS),
+                (Allow, "view", "view")]
     def __getitem__(self, key):
         if not key:
-            pass
+            return
             # TODO: display match view
         matches = {match.id: match for match in session.matches}
         return matches.get(key)
