@@ -18,7 +18,7 @@ from pynder_core.tinder import humanized_delta
                     ${user.name} - ${user.age}
                     </a>
                 </h4>
-                <h6 class="card-subtitle">${user.bio}</h6>
+                <h6 class="card-subtitle">${user.bio.replace('\n', '</br>')}</h6>
                 % if user.jobs:
                     <p class="card-text">Jobs: ${", ".join(user.jobs)}</p>
                 % endif
